@@ -37,3 +37,21 @@ def crear_viaje(datos: TripCreate, session: Session = Depends(get_session)):
     session.commit()
     session.refresh(trip)
     return trip
+
+
+@router.put("/{trip_id}", response_model=Trip)
+def editar_viaje(trip_id: int, datos: TripCreate, session: Session = Depends(get_session)):
+    comprobar_fechas(datos)
+    trip = obtener_o_404(session, trip_id)
+    trip.sqlmodel_update(datos.model_dump())
+    session.add(trip)
+    session.commit()
+    session.refresh(trip)
+    return trip
+
+
+@router.delete("/{trip_id}", status_code=204)
+def borrar_viaje(trip_id: int, session: Session = Depends(get_session)):
+    trip = obtener_o_404(session, trip_id)
+    session.delete(trip)
+    session.commit()
