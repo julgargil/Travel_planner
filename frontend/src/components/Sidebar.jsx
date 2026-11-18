@@ -14,19 +14,19 @@ function Sidebar() {
       
       <nav>
         <a className="sidebar-item">
-          <span>💼</span> Viajes <span className="badge">P1</span>
+          <span>💼</span> Viajes
         </a>
         <a className="sidebar-item">
-          <span>📅</span> Itinerario <span className="badge">P2</span>
+          <span>📅</span> Itinerario
         </a>
         <a className="sidebar-item">
-          <span>✅</span> Tareas <span className="badge">P3</span>
+          <span>✅</span> Tareas
         </a>
         <a className="sidebar-item active">
-          <span>💶</span> Gastos <span className="badge">P4</span>
+          <span>💶</span> Gastos
         </a>
         <a className="sidebar-item">
-          <span>📄</span> Documentos <span className="badge">P5</span>
+          <span>📄</span> Documentos
         </a>
       </nav>
 
