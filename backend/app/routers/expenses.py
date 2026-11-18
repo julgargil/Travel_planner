@@ -1,4 +1,5 @@
-#ISSUE 1 DAVID
+#ISSUE 1 y 2 DAVID
+from typing import Dict
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 from app.database import get_session
@@ -28,3 +29,24 @@ def delete_expense(expense_id: int, session: Session = Depends(get_session)):
     session.delete(expense)
     session.commit()
     return {"ok": True}
+
+#ISSUE 2 DAVID
+@router.get("/{trip_id}/expenses/totals", response_model=Dict[str, float])
+def get_expense_totals(trip_id: int, session: Session = Depends(get_session)):
+    gastos = session.exec(select(Expense).where(Expense.trip_id == trip_id)).all()
+    
+    totales = {
+        "Total": 0.0,
+        "Transporte": 0.0,
+        "Alojamiento": 0.0,
+        "Ocio": 0.0
+    }
+    
+    for g in gastos:
+        totales["Total"] += g.amount
+        if g.category in totales:
+            totales[g.category] += g.amount
+        else:
+            totales[g.category] = g.amount
+            
+    return totales
