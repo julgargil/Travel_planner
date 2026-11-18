@@ -2,11 +2,16 @@
 import { useState, useEffect } from 'react';
 import { getExpenses, createExpense, deleteExpense } from './api';
 import './index.css';
+//ISSUE4 DAVID
+import { getExpenses, createExpense, deleteExpense, getExpenseTotals } from './api';
 
 export default function Expenses({ activeTrip }) {
     const [expenses, setExpenses] = useState([]);
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
+    //ISSUE 4 DAVID
+    const [totals, setTotals] = useState({ Total: 0, Transporte: 0, Alojamiento: 0 });
+    //--------------------------------------------------------------------------------
     const [category, setCategory] = useState('Transporte');
 
     useEffect(() => {
@@ -19,6 +24,8 @@ export default function Expenses({ activeTrip }) {
         try {
             const data = await getExpenses(activeTrip.id);
             setExpenses(data);
+            const totalsData = await getExpenseTotals(activeTrip.id);
+            setTotals(totalsData);
         } catch (error) {
             console.error(error);
         }
@@ -50,7 +57,20 @@ export default function Expenses({ activeTrip }) {
 
     return (
         <div className="p4-container" style={{ padding: '1rem', background: '#1e1e1e', borderRadius: '8px', color: 'white' }}>
-            
+            <div style={{ display: 'flex', gap: '15px', marginBottom: '25px' }}>
+                <div style={{ background: '#111', padding: '15px', borderRadius: '8px', flex: 1 }}>
+                    <div style={{ color: '#aaa', fontSize: '0.9em', marginBottom: '5px' }}>Total</div>
+                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Total}</div>
+                </div>
+                <div style={{ background: '#111', padding: '15px', borderRadius: '8px', flex: 1 }}>
+                    <div style={{ color: '#aaa', fontSize: '0.9em', marginBottom: '5px' }}>Transporte</div>
+                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Transporte}</div>
+                </div>
+                <div style={{ background: '#111', padding: '15px', borderRadius: '8px', flex: 1 }}>
+                    <div style={{ color: '#aaa', fontSize: '0.9em', marginBottom: '5px' }}>Alojamiento</div>
+                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Alojamiento}</div>
+                </div>
+            </div>
             <form onSubmit={handleAddExpense} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                 <input 
                     value={description} 

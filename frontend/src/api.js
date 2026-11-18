@@ -42,3 +42,10 @@ export const deleteExpense = async (expenseId) => {
     if (!res.ok) throw new Error("Error borrando gasto");
     return res.json();
 };
+
+//ISSUE 4 DAVID
+export const getExpenseTotals = async (tripId) => {
+    const res = await fetch(`/api/trips/${tripId}/expenses/totals`);
+    if (!res.ok) throw new Error("Error obteniendo totales");
+    return res.json();
+};
