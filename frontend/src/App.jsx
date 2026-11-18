@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getTrips } from './api'
 import Menu from './Menu'
+import TripDetail from './TripDetail'
 import TripForm from './TripForm'
 import TripList from './TripList'
 
@@ -11,7 +12,7 @@ function App() {
   const [viajeActivoId, setViajeActivoId] = useState(null)
 
   function cargarViajes() {
-    getTrips()
+    return getTrips()
       .then(setViajes)
       .catch((e) => setError(e.message))
   }
@@ -22,9 +23,15 @@ function App() {
   }
 
   function alGuardar(viaje) {
-    cargarViajes()
-    verViaje(viaje.id)
+    cargarViajes().then(() => verViaje(viaje.id))
   }
+
+  function alBorrar() {
+    cargarViajes()
+    setPagina('viajes')
+  }
+
+  const viajeActivo = viajes.find((viaje) => viaje.id === viajeActivoId)
 
   useEffect(() => {
     cargarViajes()
@@ -40,7 +47,15 @@ function App() {
           <TripList viajes={viajes} onVer={verViaje} onNuevo={() => setPagina('nuevo')} />
         )}
         {pagina === 'nuevo' && <TripForm onGuardado={alGuardar} />}
-        {pagina === 'detalle' && <p>Aquí irá el viaje {viajeActivoId}.</p>}
+        {pagina === 'detalle' && (
+          <TripDetail
+            key={viajeActivoId}
+            viaje={viajeActivo}
+            onVolver={() => setPagina('viajes')}
+            onCambio={cargarViajes}
+            onBorrado={alBorrar}
+          />
+        )}
       </main>
     </div>
   )

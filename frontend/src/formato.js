@@ -37,6 +37,12 @@ export function separarLugar(texto) {
   return { ciudad: ciudad.trim(), pais: resto.join(',').trim() }
 }
 
+export function nombreDeViaje(viaje) {
+  const origen = separarLugar(viaje.origin).ciudad
+  const destino = separarLugar(viaje.destination).ciudad
+  return origen ? `${origen} - ${destino}` : destino
+}
+
 export function plural(numero, singular, plural) {
   return `${numero} ${numero === 1 ? singular : plural}`
 }
