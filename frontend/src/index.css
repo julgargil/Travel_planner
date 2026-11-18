@@ -1,18 +1,12 @@
-:root {
-  font-family: system-ui, sans-serif;
-  color-scheme: light dark;
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-body {
-  margin: 0;
-}
-
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.error {
-  color: crimson;
+input,
+button {
+  font: inherit;
+  padding: 0.4rem 0.6rem;
 }

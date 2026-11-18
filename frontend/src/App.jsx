@@ -1,27 +1,26 @@
 import { useEffect, useState } from 'react'
 import { getTrips } from './api'
+import Trips from './Trips'
 
 function App() {
   const [viajes, setViajes] = useState([])
   const [error, setError] = useState('')
 
-  useEffect(() => {
+  function cargarViajes() {
     getTrips()
       .then(setViajes)
       .catch((e) => setError(e.message))
+  }
+
+  useEffect(() => {
+    cargarViajes()
   }, [])
 
   return (
     <main>
       <h1>🧳 Travel Planner</h1>
       {error && <p className="error">{error}</p>}
-      <ul>
-        {viajes.map((viaje) => (
-          <li key={viaje.id}>
-            {viaje.title} — {viaje.destination} ({viaje.start_date} → {viaje.end_date})
-          </li>
-        ))}
-      </ul>
+      <Trips viajes={viajes} onCambio={cargarViajes} />
     </main>
   )
 }
