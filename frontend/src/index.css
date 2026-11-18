@@ -1,21 +1,222 @@
-form {
+:root {
+  --color-principal: #5a9bb8;
+  --color-principal-oscuro: #3f7f9c;
+  --color-fondo: #ffffff;
+  --color-superficie: #ffffff;
+  --color-cabecera: #f3f7f9;
+  --color-borde: #e1e7ec;
+  --color-texto: #1f2d3a;
+  --color-apagado: #6b7a88;
+  --color-pastilla: #e6f0f5;
+  --color-peligro: #c0392b;
+  --radio: 10px;
+
+  font-family: system-ui, sans-serif;
+  color: var(--color-texto);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-fondo);
+}
+
+/* ---------- Estructura ---------- */
+.app {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  min-height: 100vh;
 }
 
-input,
-button,
-select  {
+.contenido {
+  flex: 1;
+  max-width: 1000px;
+  padding: 2rem 2.5rem;
+}
+
+/* ---------- Menú lateral ---------- */
+.menu {
+  width: 220px;
+  background: var(--color-principal);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1.1rem 1.25rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
   font: inherit;
-  padding: 0.4rem 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
 }
 
-li {
-  margin-bottom: 0.5rem;
+.menu button:hover,
+.menu button.activo {
+  background: var(--color-principal-oscuro);
 }
 
-li button {
-  margin-left: 0.5rem;
+/* ---------- Textos ---------- */
+h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+}
+
+h2 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1rem;
+}
+
+.apagado {
+  color: var(--color-apagado);
+  font-size: 0.85rem;
+}
+
+.error {
+  color: var(--color-peligro);
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pastilla {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--color-pastilla);
+  color: var(--color-principal-oscuro);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+/* ---------- Formularios ---------- */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+}
+
+input {
+  font: inherit;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+}
+
+input:focus {
+  outline: 2px solid var(--color-principal);
+  border-color: transparent;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  font: inherit;
+  padding: 0.55rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-principal);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background: var(--color-principal-oscuro);
+}
+
+.boton-secundario {
+  background: none;
+  border: 1px solid var(--color-borde);
+  color: var(--color-principal-oscuro);
+}
+
+.boton-secundario:hover {
+  background: var(--color-pastilla);
+}
+
+.boton-peligro {
+  background: var(--color-peligro);
+}
+
+/* ---------- Tarjeta de viaje ---------- */
+.viaje {
+  display: flex;
+  flex-direction: column;
+}
+
+.viaje-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background: var(--color-cabecera);
+}
+
+.viaje-cuerpo {
+  flex: 1;
+  padding: 1rem;
+}
+
+.viaje-cuerpo h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.viaje-cuerpo p {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+}
+
+.viaje-pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1rem;
+  padding: 0.9rem 0;
+  border: none;
+  border-top: 1px solid var(--color-borde);
+  background: none;
+  color: var(--color-principal-oscuro);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pastilla-gris {
+  background: #eceff2;
+  color: var(--color-apagado);
+}
+
+.vacio {
+  padding: 2rem;
+  text-align: center;
 }

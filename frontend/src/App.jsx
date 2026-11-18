@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { getTrips } from './api'
-import SelectorViaje from './SelectorViaje'
-import Trips from './Trips'
+import Menu from './Menu'
+import TripList from './TripList'
 
 function App() {
+  const [pagina, setPagina] = useState('viajes')
   const [viajes, setViajes] = useState([])
-  const [viajeActivoId, setViajeActivoId] = useState(null)
   const [error, setError] = useState('')
+  const [viajeActivoId, setViajeActivoId] = useState(null)
 
   function cargarViajes() {
     getTrips()
@@ -14,30 +15,28 @@ function App() {
       .catch((e) => setError(e.message))
   }
 
+  function verViaje(id) {
+    setViajeActivoId(id)
+    setPagina('detalle')
+  }
+
   useEffect(() => {
     cargarViajes()
   }, [])
 
-  const viajeActivo = viajes.find((viaje) => viaje.id === viajeActivoId)
-
   return (
-    <main>
-      <h1>🧳 Travel Planner</h1>
-      {error && <p className="error">{error}</p>}
+    <div className="app">
+      <Menu pagina={pagina} onIr={setPagina} />
 
-      <SelectorViaje viajes={viajes} activoId={viajeActivoId} onElegir={setViajeActivoId} />
-
-      {viajeActivo ? (
-        <section>
-          <h2>{viajeActivo.title} · {viajeActivo.destination}</h2>
-          <p>Aquí irán las actividades, tareas, gastos y documentos de este viaje.</p>
-        </section>
-      ) : (
-        <p>Elige un viaje para ver sus actividades, tareas, gastos y documentos.</p>
-      )}
-
-      <Trips viajes={viajes} onCambio={cargarViajes} />
-    </main>
+      <main className="contenido">
+        {error && <p className="error">{error}</p>}
+        {pagina === 'viajes' && (
+          <TripList viajes={viajes} onVer={verViaje} onNuevo={() => setPagina('nuevo')} />
+        )}
+        {pagina === 'nuevo' && <p>Aquí irá el formulario de nuevo viaje.</p>}
+        {pagina === 'detalle' && <p>Aquí irá el viaje {viajeActivoId}.</p>}
+      </main>
+    </div>
   )
 }
 
