@@ -1,29 +1,17 @@
-import { useEffect, useState } from 'react'
-import { getTrips } from './api'
+import React from 'react';
+import Sidebar from './components/Sidebar';
+import Gastos from './components/Gastos';
+import './index.css';
 
 function App() {
-  const [viajes, setViajes] = useState([])
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    getTrips()
-      .then(setViajes)
-      .catch((e) => setError(e.message))
-  }, [])
-
   return (
-    <main>
-      <h1>🧳 Travel Planner</h1>
-      {error && <p className="error">{error}</p>}
-      <ul>
-        {viajes.map((viaje) => (
-          <li key={viaje.id}>
-            {viaje.title} — {viaje.destination} ({viaje.start_date} → {viaje.end_date})
-          </li>
-        ))}
-      </ul>
-    </main>
-  )
+    <div className="app-container">
+      <Sidebar />
+      <main className="main-content">
+        <Gastos />
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

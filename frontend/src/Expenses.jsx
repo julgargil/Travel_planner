@@ -1,6 +1,5 @@
 //ISSUE 3 DAVID
 import { useState, useEffect } from 'react';
-import { getExpenses, createExpense, deleteExpense } from './api';
 import './index.css';
 //ISSUE4 DAVID
 import { getExpenses, createExpense, deleteExpense, getExpenseTotals } from './api';
