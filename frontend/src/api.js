@@ -19,3 +19,26 @@ export const getTrips = () => pedir('/trips')
 export const createTrip = (viaje) => pedir('/trips', { method: 'POST', body: JSON.stringify(viaje) })
 export const updateTrip = (id, viaje) => pedir(`/trips/${id}`, { method: 'PUT', body: JSON.stringify(viaje) })
 export const deleteTrip = (id) => pedir(`/trips/${id}`, { method: 'DELETE' })
+
+//ISSUE 3 DAVID
+export const getExpenses = async (tripId) => {
+    const res = await fetch(`/api/trips/${tripId}/expenses`);
+    if (!res.ok) throw new Error("Error obteniendo gastos");
+    return res.json();
+};
+
+export const createExpense = async (tripId, data) => {
+    const res = await fetch(`/api/trips/${tripId}/expenses`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error("Error creando gasto");
+    return res.json();
+};
+
+export const deleteExpense = async (expenseId) => {
+    const res = await fetch(`/api/trips/expenses/${expenseId}`, { method: 'DELETE' });
+    if (!res.ok) throw new Error("Error borrando gasto");
+    return res.json();
+};
