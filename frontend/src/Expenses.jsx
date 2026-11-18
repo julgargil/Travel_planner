@@ -115,6 +115,10 @@ export default function Expenses({ activeTrip }) {
                     </li>
                 ))}
             </ul>
+            <div style={{ marginTop: '20px', paddingTop: '15px', borderTop: '1px solid #333', color: '#888', fontSize: '0.9em', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>☁️</span>
+                <span>Tiempo: {activeTrip.destination} 9° / 2°</span>
+            </div>
         </div>
     );
 }
