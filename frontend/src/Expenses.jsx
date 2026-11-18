@@ -60,15 +60,15 @@ export default function Expenses({ activeTrip }) {
             <div style={{ display: 'flex', gap: '15px', marginBottom: '25px' }}>
                 <div style={{ background: '#111', padding: '15px', borderRadius: '8px', flex: 1 }}>
                     <div style={{ color: '#aaa', fontSize: '0.9em', marginBottom: '5px' }}>Total</div>
-                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Total}</div>
+                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Total.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</div>
                 </div>
                 <div style={{ background: '#111', padding: '15px', borderRadius: '8px', flex: 1 }}>
                     <div style={{ color: '#aaa', fontSize: '0.9em', marginBottom: '5px' }}>Transporte</div>
-                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Transporte}</div>
+                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Transporte.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</div>
                 </div>
                 <div style={{ background: '#111', padding: '15px', borderRadius: '8px', flex: 1 }}>
                     <div style={{ color: '#aaa', fontSize: '0.9em', marginBottom: '5px' }}>Alojamiento</div>
-                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Alojamiento}</div>
+                    <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{totals.Alojamiento.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</div>
                 </div>
             </div>
             <form onSubmit={handleAddExpense} style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
@@ -109,7 +109,7 @@ export default function Expenses({ activeTrip }) {
                             <strong>{ex.description}</strong> <span style={{ color: '#aaa', fontSize: '0.9em' }}>{ex.category}</span>
                         </div>
                         <div>
-                            <span>{ex.amount}</span>
+                            <span>{ex.amount.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })}</span>
                             <button onClick={() => handleDelete(ex.id)} style={{ marginLeft: '15px', background: 'transparent', border: 'none', cursor: 'pointer' }}>🗑</button>
                         </div>
                     </li>
