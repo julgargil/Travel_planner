@@ -5,9 +5,11 @@ from sqlmodel import Field, SQLModel
 
 class TripBase(SQLModel):
     title: str
+    origin: str = ""
     destination: str
     start_date: date
     end_date: date
+    travelers: int = Field(default=1, ge=1)
 
 
 class Trip(TripBase, table=True):
