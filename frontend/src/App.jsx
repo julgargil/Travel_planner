@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="app">
-      <Menu pagina={pagina} onIr={setPagina} />
+      <Menu pagina={pagina} onIr={setPagina} viaje={pagina === 'detalle' ? viajeActivo : null} />
 
       <main className="contenido">
         {error && <p className="error">{error}</p>}

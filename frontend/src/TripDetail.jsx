@@ -76,19 +76,19 @@ function TripDetail({ viaje, onVolver, onCambio, onBorrado }) {
 
       {/* Aquí va el componente de cada compañero, con el id del viaje: <Expenses viajeId={viaje.id} /> */}
       <div className="secciones">
-        <section className="tarjeta seccion">
+        <section id="actividades" className="tarjeta seccion">
           <h2>Actividades</h2>
           <p className="apagado">Próximamente.</p>
         </section>
-        <section className="tarjeta seccion">
+        <section id="tareas" className="tarjeta seccion">
           <h2>Tareas</h2>
           <p className="apagado">Próximamente.</p>
         </section>
-        <section className="tarjeta seccion">
+        <section id="gastos" className="tarjeta seccion">
           <h2>Gastos</h2>
           <p className="apagado">Próximamente.</p>
         </section>
-        <section className="tarjeta seccion">
+        <section id="documentos" className="tarjeta seccion">
           <h2>Documentos</h2>
           <p className="apagado">Próximamente.</p>
         </section>
