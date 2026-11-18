@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app.routers import trips
+from app.routers import trips, expenses
 
 from app import models  # noqa: F401  (importa los modelos para que se creen sus tablas)
 from app.database import create_db_and_tables
@@ -15,6 +15,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Travel Planner API", lifespan=lifespan)
+app.include_router(expenses.router)
 app.include_router(trips.router)
 
 
