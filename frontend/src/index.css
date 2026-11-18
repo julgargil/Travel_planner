@@ -6,7 +6,8 @@ form {
 }
 
 input,
-button {
+button,
+select  {
   font: inherit;
   padding: 0.4rem 0.6rem;
 }
