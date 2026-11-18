@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getTrips } from './api'
 import Menu from './Menu'
+import TripForm from './TripForm'
 import TripList from './TripList'
 
 function App() {
@@ -20,6 +21,11 @@ function App() {
     setPagina('detalle')
   }
 
+  function alGuardar(viaje) {
+    cargarViajes()
+    verViaje(viaje.id)
+  }
+
   useEffect(() => {
     cargarViajes()
   }, [])
@@ -33,7 +39,7 @@ function App() {
         {pagina === 'viajes' && (
           <TripList viajes={viajes} onVer={verViaje} onNuevo={() => setPagina('nuevo')} />
         )}
-        {pagina === 'nuevo' && <p>Aquí irá el formulario de nuevo viaje.</p>}
+        {pagina === 'nuevo' && <TripForm onGuardado={alGuardar} />}
         {pagina === 'detalle' && <p>Aquí irá el viaje {viajeActivoId}.</p>}
       </main>
     </div>
