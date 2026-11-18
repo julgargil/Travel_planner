@@ -8,6 +8,9 @@ function Menu({ pagina, onIr, viaje }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
+        <button className="sidebar-item" title="Próximamente">
+          <span>👤</span> Mi cuenta
+        </button>
         <button className={clase('viajes')} onClick={() => onIr('viajes')}>
           <span>✈️</span> Mis viajes
         </button>
@@ -33,6 +36,12 @@ function Menu({ pagina, onIr, viaje }) {
           </a>
         </nav>
       )}
+
+      <div className="sidebar-footer">
+        <button className="sidebar-item" title="Próximamente">
+          <span>🚪</span> Cerrar sesión
+        </button>
+      </div>
     </aside>
   )
 }

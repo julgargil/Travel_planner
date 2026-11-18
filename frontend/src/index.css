@@ -80,6 +80,12 @@ body {
   background: var(--color-principal-oscuro);
 }
 
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .sidebar-titulo {
   margin: 0 0 0.5rem;
   padding: 0 1.5rem;
