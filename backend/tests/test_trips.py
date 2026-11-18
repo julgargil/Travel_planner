@@ -1,8 +1,10 @@
 VIAJE = {
     "title": "Japón en Navidad",
+    "origin": "Sevilla",
     "destination": "Tokio",
     "start_date": "2026-12-24",
     "end_date": "2026-12-27",
+    "travelers": 2,
 }
 
 
@@ -43,3 +45,15 @@ def test_borrar_viaje(client):
     trip_id = client.post("/trips", json=VIAJE).json()["id"]
     assert client.delete(f"/trips/{trip_id}").status_code == 204
     assert client.get(f"/trips/{trip_id}").status_code == 404
+
+
+def test_viajeros_menor_que_uno_da_422(client):
+    respuesta = client.post("/trips", json={**VIAJE, "travelers": 0})
+    assert respuesta.status_code == 422
+
+
+def test_origen_y_viajeros_por_defecto(client):
+    sin_extras = {k: v for k, v in VIAJE.items() if k not in ("origin", "travelers")}
+    datos = client.post("/trips", json=sin_extras).json()
+    assert datos["origin"] == ""
+    assert datos["travelers"] == 1
