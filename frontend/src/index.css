@@ -10,3 +10,11 @@ button {
   font: inherit;
   padding: 0.4rem 0.6rem;
 }
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+li button {
+  margin-left: 0.5rem;
+}
